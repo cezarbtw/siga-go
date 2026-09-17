@@ -1,261 +1,565 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<title>SIGA-GO | Gestão Ambiental de Goiás</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-  :root{
-    --verde-escuro:#1b4332;
-    --verde:#2d6a4f;
-    --verde-claro:#74c69d;
-    --fundo:#f4f8f6;
-    --texto:#1b1b1b;
-    --alerta:#c1121f;
-    --aviso:#e09f3e;
-  }
-  *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Arial,sans-serif;}
-  body{background:var(--fundo);color:var(--texto);}
-  header{background:var(--verde-escuro);color:#fff;padding:1.2rem 2rem;display:flex;justify-content:space-between;align-items:center;}
-  header h1{font-size:1.3rem;font-weight:600;}
-  header span{font-size:.85rem;opacity:.8;}
-  nav{display:flex;gap:.5rem;background:var(--verde);padding:.6rem 2rem;flex-wrap:wrap;}
-  nav button{background:transparent;border:none;color:#fff;padding:.5rem 1rem;border-radius:6px;cursor:pointer;font-size:.9rem;}
-  nav button.ativo,nav button:hover{background:rgba(255,255,255,.2);}
-  main{padding:1.5rem 2rem;max-width:1100px;margin:0 auto;}
-  .cartoes{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:1.5rem;}
-  .cartao{background:#fff;border-radius:10px;padding:1rem 1.2rem;box-shadow:0 1px 3px rgba(0,0,0,.08);border-left:4px solid var(--verde-claro);}
-  .cartao h3{font-size:.78rem;text-transform:uppercase;color:#555;margin-bottom:.3rem;}
-  .cartao p{font-size:1.5rem;font-weight:700;color:var(--verde-escuro);}
-  section.painel{background:#fff;border-radius:10px;padding:1.2rem;box-shadow:0 1px 3px rgba(0,0,0,.08);margin-bottom:1.5rem;display:none;}
-  section.painel.ativo{display:block;}
-  h2{color:var(--verde-escuro);margin-bottom:1rem;font-size:1.1rem;}
-  table{width:100%;border-collapse:collapse;font-size:.88rem;}
-  th,td{padding:.55rem .6rem;text-align:left;border-bottom:1px solid #eee;}
-  th{color:#555;text-transform:uppercase;font-size:.72rem;}
-  .badge{padding:.2rem .55rem;border-radius:20px;font-size:.72rem;font-weight:600;color:#fff;}
-  .ALTA,.CRITICA{background:var(--alerta);}
-  .MEDIA{background:var(--aviso);}
-  .BAIXA{background:var(--verde-claro);color:#1b1b1b;}
-  form{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-top:.5rem;}
-  form label{font-size:.78rem;color:#555;display:flex;flex-direction:column;gap:.25rem;}
-  input,select,textarea{padding:.5rem;border:1px solid #ccc;border-radius:6px;font-size:.85rem;}
-  form .completo{grid-column:1/-1;}
-  button.enviar{grid-column:1/-1;background:var(--verde);color:#fff;border:none;padding:.6rem;border-radius:6px;cursor:pointer;font-weight:600;}
-  button.enviar:hover{background:var(--verde-escuro);}
-  #loginBox{max-width:340px;margin:3rem auto;background:#fff;padding:2rem;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.1);}
-  #loginBox h2{text-align:center;}
-  #loginBox input{width:100%;margin-bottom:.7rem;}
-  #loginBox button{width:100%;padding:.6rem;background:var(--verde);color:#fff;border:none;border-radius:6px;cursor:pointer;}
-  .mensagem{font-size:.82rem;color:var(--alerta);margin-top:.5rem;}
-  .oculto{display:none;}
-</style>
+  <meta charset="UTF-8">
+  <title>SIGA-GO | Gestão Ambiental de Goiás</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --verde-escuro: #1b4332;
+      --verde: #2d6a4f;
+      --verde-claro: #74c69d;
+      --fundo: #f4f8f6;
+      --texto: #1b1b1b;
+      --alerta: #c1121f;
+      --aviso: #e09f3e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    body {
+      background: var(--fundo);
+      color: var(--texto);
+    }
+
+    header {
+      background: var(--verde-escuro);
+      color: #fff;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    header span {
+      font-size: .85rem;
+      opacity: .8;
+    }
+
+    nav {
+      display: flex;
+      gap: .5rem;
+      background: var(--verde);
+      padding: .6rem 2rem;
+      flex-wrap: wrap;
+    }
+
+    nav button {
+      background: transparent;
+      border: none;
+      color: #fff;
+      padding: .5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: .9rem;
+    }
+
+    nav button.ativo,
+    nav button:hover {
+      background: rgba(255, 255, 255, .2);
+    }
+
+    main {
+      padding: 1.5rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .cartoes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cartao {
+      background: #fff;
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, .08);
+      border-left: 4px solid var(--verde-claro);
+    }
+
+    .cartao h3 {
+      font-size: .78rem;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: .3rem;
+    }
+
+    .cartao p {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--verde-escuro);
+    }
+
+    section.painel {
+      background: #fff;
+      border-radius: 10px;
+      padding: 1.2rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, .08);
+      margin-bottom: 1.5rem;
+      display: none;
+    }
+
+    section.painel.ativo {
+      display: block;
+    }
+
+    h2 {
+      color: var(--verde-escuro);
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .88rem;
+    }
+
+    th,
+    td {
+      padding: .55rem .6rem;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    th {
+      color: #555;
+      text-transform: uppercase;
+      font-size: .72rem;
+    }
+
+    .badge {
+      padding: .2rem .55rem;
+      border-radius: 20px;
+      font-size: .72rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .ALTA,
+    .CRITICA {
+      background: var(--alerta);
+    }
+
+    .MEDIA {
+      background: var(--aviso);
+    }
+
+    .BAIXA {
+      background: var(--verde-claro);
+      color: #1b1b1b;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .7rem;
+      margin-top: .5rem;
+    }
+
+    form label {
+      font-size: .78rem;
+      color: #555;
+      display: flex;
+      flex-direction: column;
+      gap: .25rem;
+    }
+
+    input,
+    select,
+    textarea {
+      padding: .5rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: .85rem;
+    }
+
+    form .completo {
+      grid-column: 1/-1;
+    }
+
+    button.enviar {
+      grid-column: 1/-1;
+      background: var(--verde);
+      color: #fff;
+      border: none;
+      padding: .6rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    button.enviar:hover {
+      background: var(--verde-escuro);
+    }
+
+    #loginBox,
+    #cadastroBox {
+      max-width: 360px;
+      margin: 3rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+    }
+
+    #loginBox h2,
+    #cadastroBox h2 {
+      text-align: center;
+    }
+
+    #loginBox input,
+    #cadastroBox input,
+    #cadastroBox select {
+      width: 100%;
+      margin-bottom: .7rem;
+      padding: .55rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: .85rem;
+    }
+
+    #loginBox button,
+    #cadastroBox button {
+      width: 100%;
+      padding: .6rem;
+      background: var(--verde);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    #loginBox button:hover,
+    #cadastroBox button:hover {
+      background: var(--verde-escuro);
+    }
+
+    .mensagem {
+      font-size: .82rem;
+      color: var(--alerta);
+      margin-top: .5rem;
+      text-align: center;
+    }
+
+    .oculto {
+      display: none;
+    }
+  </style>
 </head>
+
 <body>
 
-<div id="loginBox">
-  <h2>SIGA-GO</h2>
-  <p style="text-align:center;font-size:.8rem;color:#666;margin-bottom:1rem;">Sistema Web de Gestão Ambiental de Goiás</p>
-  <input id="loginEmail" type="email" placeholder="E-mail" value="maria@siga.go.gov.br">
-  <input id="loginSenha" type="password" placeholder="Senha" value="senha123">
-  <button onclick="fazerLogin()">Entrar</button>
-  <p class="mensagem" id="loginMsg"></p>
-  <p style="font-size:.72rem;color:#888;margin-top:1rem;">
-    Sem conta? <a href="#" onclick="registrarDemo();return false;">Criar usuário demonstração</a>
-  </p>
-</div>
+  <div id="loginBox">
+    <h2>SIGA-GO</h2>
+    <p style="text-align:center;font-size:.8rem;color:#666;margin-bottom:1rem;">Sistema Web de Gestão Ambiental de Goiás</p>
+    <input id="loginEmail" type="email" placeholder="E-mail" value="maria@siga.go.gov.br">
+    <input id="loginSenha" type="password" placeholder="Senha" value="senha123">
+    <button onclick="fazerLogin()">Entrar</button>
+    <p class="mensagem" id="loginMsg"></p>
+    <div style="font-size:.78rem;color:#666;margin-top:1.2rem;text-align:center;display:flex;flex-direction:column;gap:.5rem;">
+      <a href="#" onclick="alternarTelaAuth('cadastro');return false;" style="color:var(--verde);font-weight:600;text-decoration:none;">Não tem conta? Cadastre-se</a>
+      <a href="#" onclick="registrarDemo();return false;" style="color:#888;">Preencher com usuário demonstração</a>
+    </div>
+  </div>
 
-<div id="app" class="oculto">
-<header>
-  <h1>🌱 SIGA-GO — Gestão Ambiental do Estado de Goiás</h1>
-  <span id="usuarioLogado"></span>
-</header>
-<nav>
-  <button class="ativo" onclick="mostrarPainel('dashboard', this)">Painel</button>
-  <button onclick="mostrarPainel('organizacoes', this)">Organizações</button>
-  <button onclick="mostrarPainel('ocorrencias', this)">Ocorrências</button>
-</nav>
-
-<main>
-  <section id="dashboard" class="painel ativo">
-    <h2>Indicadores de Sustentabilidade (agregado)</h2>
-    <div class="cartoes" id="cartoesResumo"></div>
-    <h2>Desempenho por organização</h2>
-    <table>
-      <thead><tr><th>Organização</th><th>Resíduos reciclados (kg)</th><th>Emissões evitadas (kgCO₂)</th></tr></thead>
-      <tbody id="tabelaResumoOrg"></tbody>
-    </table>
-  </section>
-
-  <section id="organizacoes" class="painel">
-    <h2>Organizações cadastradas</h2>
-    <table>
-      <thead><tr><th>Razão social</th><th>Município</th><th>Setor</th><th>ISO 14001</th></tr></thead>
-      <tbody id="tabelaOrganizacoes"></tbody>
-    </table>
-    <h2 style="margin-top:1.5rem;">Cadastrar nova organização</h2>
-    <form onsubmit="cadastrarOrganizacao(event)">
-      <label>Razão social <input required id="orgRazao"></label>
-      <label>CNPJ <input required id="orgCnpj"></label>
-      <label>Município (GO) <input required id="orgMunicipio"></label>
-      <label>Setor <input required id="orgSetor"></label>
-      <label class="completo"><input type="checkbox" id="orgIso"> Possui certificação ISO 14001</label>
-      <button class="enviar" type="submit">Cadastrar</button>
+  <div id="cadastroBox" class="oculto">
+    <h2>Criar Conta</h2>
+    <p style="text-align:center;font-size:.8rem;color:#666;margin-bottom:1rem;">Cadastre-se no SIGA-GO</p>
+    <form onsubmit="fazerCadastro(event)">
+      <input id="cadNome" type="text" placeholder="Nome completo" required>
+      <input id="cadEmail" type="email" placeholder="E-mail" required>
+      <input id="cadSenha" type="password" placeholder="Senha" required>
+      <select id="cadPerfil" required>
+        <option value="GESTOR_AMBIENTAL">Gestor Ambiental</option>
+        <option value="AUDITOR">Auditor</option>
+        <option value="ORGAO_FISCALIZADOR">Órgão Fiscalizador</option>
+      </select>
+      <button type="submit">Cadastrar</button>
     </form>
-  </section>
+    <p class="mensagem" id="cadMsg"></p>
+    <div style="font-size:.78rem;color:#666;margin-top:1.2rem;text-align:center;">
+      Já tem uma conta? <a href="#" onclick="alternarTelaAuth('login');return false;" style="color:var(--verde);font-weight:600;text-decoration:none;">Fazer login</a>
+    </div>
+  </div>
 
-  <section id="ocorrencias" class="painel">
-    <h2>Ocorrências ambientais registradas</h2>
-    <table>
-      <thead><tr><th>Tipo</th><th>Município</th><th>Gravidade</th><th>Status</th><th>Data</th></tr></thead>
-      <tbody id="tabelaOcorrencias"></tbody>
-    </table>
-    <h2 style="margin-top:1.5rem;">Registrar nova ocorrência</h2>
-    <form onsubmit="registrarOcorrencia(event)">
-      <label>Tipo
-        <select id="ocoTipo">
-          <option value="DESMATAMENTO">Desmatamento</option>
-          <option value="DESCARTE_IRREGULAR">Descarte irregular</option>
-          <option value="POLUICAO_HIDRICA">Poluição hídrica</option>
-          <option value="QUEIMADA">Queimada</option>
-          <option value="OUTRO">Outro</option>
-        </select>
-      </label>
-      <label>Gravidade
-        <select id="ocoGravidade">
-          <option value="BAIXA">Baixa</option>
-          <option value="MEDIA">Média</option>
-          <option value="ALTA">Alta</option>
-          <option value="CRITICA">Crítica</option>
-        </select>
-      </label>
-      <label>Município (GO) <input required id="ocoMunicipio"></label>
-      <label>ID da organização (opcional) <input id="ocoOrgId" type="number"></label>
-      <label class="completo">Descrição <textarea required id="ocoDescricao" rows="2"></textarea></label>
-      <button class="enviar" type="submit">Registrar ocorrência</button>
-    </form>
-  </section>
-</main>
-</div>
+  <div id="app" class="oculto">
+    <header>
+      <h1>🌱 SIGA-GO — Gestão Ambiental do Estado de Goiás</h1>
+      <span id="usuarioLogado"></span>
+    </header>
+    <nav>
+      <button class="ativo" onclick="mostrarPainel('dashboard', this)">Painel</button>
+      <button onclick="mostrarPainel('organizacoes', this)">Organizações</button>
+      <button onclick="mostrarPainel('ocorrencias', this)">Ocorrências</button>
+    </nav>
 
-<script>
-const API = window.location.protocol === 'file:' ? 'http://localhost:3000/api' : '/api';
-let token = null;
+    <main>
+      <section id="dashboard" class="painel ativo">
+        <h2>Indicadores de Sustentabilidade (agregado)</h2>
+        <div class="cartoes" id="cartoesResumo"></div>
+        <h2>Desempenho por organização</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Organização</th>
+              <th>Resíduos reciclados (kg)</th>
+              <th>Emissões evitadas (kgCO₂)</th>
+            </tr>
+          </thead>
+          <tbody id="tabelaResumoOrg"></tbody>
+        </table>
+      </section>
 
-async function fazerLogin(){
-  const email = document.getElementById('loginEmail').value;
-  const senha = document.getElementById('loginSenha').value;
-  try{
-    const r = await fetch(`${API}/auth/login`, {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({email, senha})
-    });
-    const dados = await r.json();
-    if(!r.ok) throw new Error(dados.erro || 'Falha no login');
-    token = dados.token;
-    document.getElementById('loginBox').classList.add('oculto');
-    document.getElementById('app').classList.remove('oculto');
-    document.getElementById('usuarioLogado').textContent = `${dados.usuario.nome} (${dados.usuario.perfil})`;
-    carregarTudo();
-  }catch(e){
-    document.getElementById('loginMsg').textContent = e.message;
-  }
-}
+      <section id="organizacoes" class="painel">
+        <h2>Organizações cadastradas</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Razão social</th>
+              <th>Município</th>
+              <th>Setor</th>
+              <th>ISO 14001</th>
+            </tr>
+          </thead>
+          <tbody id="tabelaOrganizacoes"></tbody>
+        </table>
+        <h2 style="margin-top:1.5rem;">Cadastrar nova organização</h2>
+        <form onsubmit="cadastrarOrganizacao(event)">
+          <label>Razão social <input required id="orgRazao"></label>
+          <label>CNPJ <input required id="orgCnpj"></label>
+          <label>Município (GO) <input required id="orgMunicipio"></label>
+          <label>Setor <input required id="orgSetor"></label>
+          <label class="completo"><input type="checkbox" id="orgIso"> Possui certificação ISO 14001</label>
+          <button class="enviar" type="submit">Cadastrar</button>
+        </form>
+      </section>
 
-async function registrarDemo(){
-  await fetch(`${API}/auth/registrar`, {
-    method:'POST', headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({nome:'Maria Silva', email:'maria@siga.go.gov.br', senha:'senha123', perfil:'GESTOR_AMBIENTAL'})
-  });
-  document.getElementById('loginMsg').style.color = 'green';
-  document.getElementById('loginMsg').textContent = 'Usuário demonstração criado. Clique em Entrar.';
-}
+      <section id="ocorrencias" class="painel">
+        <h2>Ocorrências ambientais registradas</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Tipo</th>
+              <th>Município</th>
+              <th>Gravidade</th>
+              <th>Status</th>
+              <th>Data</th>
+            </tr>
+          </thead>
+          <tbody id="tabelaOcorrencias"></tbody>
+        </table>
+        <h2 style="margin-top:1.5rem;">Registrar nova ocorrência</h2>
+        <form onsubmit="registrarOcorrencia(event)">
+          <label>Tipo
+            <select id="ocoTipo">
+              <option value="DESMATAMENTO">Desmatamento</option>
+              <option value="DESCARTE_IRREGULAR">Descarte irregular</option>
+              <option value="POLUICAO_HIDRICA">Poluição hídrica</option>
+              <option value="QUEIMADA">Queimada</option>
+              <option value="OUTRO">Outro</option>
+            </select>
+          </label>
+          <label>Gravidade
+            <select id="ocoGravidade">
+              <option value="BAIXA">Baixa</option>
+              <option value="MEDIA">Média</option>
+              <option value="ALTA">Alta</option>
+              <option value="CRITICA">Crítica</option>
+            </select>
+          </label>
+          <label>Município (GO) <input required id="ocoMunicipio"></label>
+          <label>ID da organização (opcional) <input id="ocoOrgId" type="number"></label>
+          <label class="completo">Descrição <textarea required id="ocoDescricao" rows="2"></textarea></label>
+          <button class="enviar" type="submit">Registrar ocorrência</button>
+        </form>
+      </section>
+    </main>
+  </div>
 
-function cabecalhos(){
-  return {'Content-Type':'application/json', 'Authorization': `Bearer ${token}`};
-}
+  <script>
+    const API = window.location.protocol === 'file:' ? 'http://localhost:3000/api' : '/api';
+    let token = null;
 
-function mostrarPainel(id, botao){
-  document.querySelectorAll('.painel').forEach(s=>s.classList.remove('ativo'));
-  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('ativo'));
-  document.getElementById(id).classList.add('ativo');
-  botao.classList.add('ativo');
-}
+    function alternarTelaAuth(tela) {
+      document.getElementById('loginMsg').textContent = '';
+      document.getElementById('cadMsg').textContent = '';
+      if (tela === 'cadastro') {
+        document.getElementById('loginBox').classList.add('oculto');
+        document.getElementById('cadastroBox').classList.remove('oculto');
+      } else {
+        document.getElementById('cadastroBox').classList.add('oculto');
+        document.getElementById('loginBox').classList.remove('oculto');
+      }
+    }
 
-async function carregarTudo(){
-  await carregarResumo();
-  await carregarOrganizacoes();
-  await carregarOcorrencias();
-}
+    async function fazerLogin() {
+      const email = document.getElementById('loginEmail').value;
+      const senha = document.getElementById('loginSenha').value;
+      const msg = document.getElementById('loginMsg');
+      try {
+        const r = await fetch(`${API}/auth/login`, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, senha })
+        });
+        const dados = await r.json();
+        if (!r.ok) throw new Error(dados.erro || 'Falha no login');
+        token = dados.token;
+        document.getElementById('loginBox').classList.add('oculto');
+        document.getElementById('cadastroBox').classList.add('oculto');
+        document.getElementById('app').classList.remove('oculto');
+        document.getElementById('usuarioLogado').textContent = `${dados.usuario.nome} (${dados.usuario.perfil})`;
+        carregarTudo();
+      } catch (e) {
+        msg.style.color = 'var(--alerta)';
+        msg.textContent = e.message;
+      }
+    }
 
-async function carregarResumo(){
-  const r = await fetch(`${API}/indicadores/resumo`, {headers: cabecalhos()});
-  const d = await r.json();
-  document.getElementById('cartoesResumo').innerHTML = `
-    <div class="cartao"><h3>Resíduos reciclados</h3><p>${(d.resumo.total_residuos_reciclados_kg||0).toLocaleString('pt-BR')} kg</p></div>
-    <div class="cartao"><h3>Emissões evitadas</h3><p>${(d.resumo.total_emissoes_evitadas_kg_co2||0).toLocaleString('pt-BR')} kgCO₂</p></div>
-    <div class="cartao"><h3>Água reutilizada</h3><p>${(d.resumo.total_agua_reutilizada_litros||0).toLocaleString('pt-BR')} L</p></div>
-    <div class="cartao"><h3>Organizações reportando</h3><p>${d.resumo.organizacoes_reportando||0}</p></div>
+    async function fazerCadastro(ev) {
+      ev.preventDefault();
+      const nome = document.getElementById('cadNome').value;
+      const email = document.getElementById('cadEmail').value;
+      const senha = document.getElementById('cadSenha').value;
+      const perfil = document.getElementById('cadPerfil').value;
+      const msg = document.getElementById('cadMsg');
+
+      try {
+        const r = await fetch(`${API}/auth/registrar`, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nome, email, senha, perfil })
+        });
+        const dados = await r.json();
+        if (!r.ok) throw new Error(dados.erro || dados.detalhe || 'Falha ao registrar');
+
+        // Preenche campos de login com o novo usuário criado e volta para a tela de login
+        document.getElementById('loginEmail').value = email;
+        document.getElementById('loginSenha').value = senha;
+        alternarTelaAuth('login');
+        const loginMsg = document.getElementById('loginMsg');
+        loginMsg.style.color = 'green';
+        loginMsg.textContent = `Conta de ${nome} criada com sucesso! Clique em Entrar.`;
+      } catch (e) {
+        msg.style.color = 'var(--alerta)';
+        msg.textContent = e.message;
+      }
+    }
+
+    async function registrarDemo() {
+      document.getElementById('loginEmail').value = 'maria@siga.go.gov.br';
+      document.getElementById('loginSenha').value = 'senha123';
+      try {
+        await fetch(`${API}/auth/registrar`, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nome: 'Maria Silva', email: 'maria@siga.go.gov.br', senha: 'senha123', perfil: 'GESTOR_AMBIENTAL' })
+        });
+      } catch(e) {}
+      const loginMsg = document.getElementById('loginMsg');
+      loginMsg.style.color = 'green';
+      loginMsg.textContent = 'Usuário demonstração pronto. Clique em Entrar.';
+    }
+
+    function cabecalhos() {
+      return { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` };
+    }
+
+    function mostrarPainel(id, botao) {
+      document.querySelectorAll('.painel').forEach(s => s.classList.remove('ativo'));
+      document.querySelectorAll('nav button').forEach(b => b.classList.remove('ativo'));
+      document.getElementById(id).classList.add('ativo');
+      botao.classList.add('ativo');
+    }
+
+    async function carregarTudo() {
+      await carregarResumo();
+      await carregarOrganizacoes();
+      await carregarOcorrencias();
+    }
+
+    async function carregarResumo() {
+      const r = await fetch(`${API}/indicadores/resumo`, { headers: cabecalhos() });
+      const d = await r.json();
+      document.getElementById('cartoesResumo').innerHTML = `
+    <div class="cartao"><h3>Resíduos reciclados</h3><p>${(d.resumo.total_residuos_reciclados_kg || 0).toLocaleString('pt-BR')} kg</p></div>
+    <div class="cartao"><h3>Emissões evitadas</h3><p>${(d.resumo.total_emissoes_evitadas_kg_co2 || 0).toLocaleString('pt-BR')} kgCO₂</p></div>
+    <div class="cartao"><h3>Água reutilizada</h3><p>${(d.resumo.total_agua_reutilizada_litros || 0).toLocaleString('pt-BR')} L</p></div>
+    <div class="cartao"><h3>Organizações reportando</h3><p>${d.resumo.organizacoes_reportando || 0}</p></div>
   `;
-  document.getElementById('tabelaResumoOrg').innerHTML = d.por_organizacao.map(o=>`
-    <tr><td>${o.razao_social}</td><td>${o.residuos_reciclados_kg||0}</td><td>${o.emissoes_evitadas_kg_co2||0}</td></tr>
+      document.getElementById('tabelaResumoOrg').innerHTML = d.por_organizacao.map(o => `
+    <tr><td>${o.razao_social}</td><td>${o.residuos_reciclados_kg || 0}</td><td>${o.emissoes_evitadas_kg_co2 || 0}</td></tr>
   `).join('') || '<tr><td colspan="3">Nenhum dado ainda.</td></tr>';
-}
+    }
 
-async function carregarOrganizacoes(){
-  const r = await fetch(`${API}/organizacoes`, {headers: cabecalhos()});
-  const lista = await r.json();
-  document.getElementById('tabelaOrganizacoes').innerHTML = lista.map(o=>`
+    async function carregarOrganizacoes() {
+      const r = await fetch(`${API}/organizacoes`, { headers: cabecalhos() });
+      const lista = await r.json();
+      document.getElementById('tabelaOrganizacoes').innerHTML = lista.map(o => `
     <tr><td>${o.razao_social}</td><td>${o.municipio}</td><td>${o.setor}</td><td>${o.certificacao_iso14001 ? 'Sim' : 'Não'}</td></tr>
   `).join('') || '<tr><td colspan="4">Nenhuma organização cadastrada.</td></tr>';
-}
+    }
 
-async function cadastrarOrganizacao(ev){
-  ev.preventDefault();
-  await fetch(`${API}/organizacoes`, {
-    method:'POST', headers: cabecalhos(),
-    body: JSON.stringify({
-      razao_social: document.getElementById('orgRazao').value,
-      cnpj: document.getElementById('orgCnpj').value,
-      municipio: document.getElementById('orgMunicipio').value,
-      setor: document.getElementById('orgSetor').value,
-      certificacao_iso14001: document.getElementById('orgIso').checked
-    })
-  });
-  ev.target.reset();
-  carregarOrganizacoes();
-}
+    async function cadastrarOrganizacao(ev) {
+      ev.preventDefault();
+      await fetch(`${API}/organizacoes`, {
+        method: 'POST', headers: cabecalhos(),
+        body: JSON.stringify({
+          razao_social: document.getElementById('orgRazao').value,
+          cnpj: document.getElementById('orgCnpj').value,
+          municipio: document.getElementById('orgMunicipio').value,
+          setor: document.getElementById('orgSetor').value,
+          certificacao_iso14001: document.getElementById('orgIso').checked
+        })
+      });
+      ev.target.reset();
+      carregarOrganizacoes();
+    }
 
-async function carregarOcorrencias(){
-  const r = await fetch(`${API}/ocorrencias`, {headers: cabecalhos()});
-  const lista = await r.json();
-  document.getElementById('tabelaOcorrencias').innerHTML = lista.map(o=>`
+    async function carregarOcorrencias() {
+      const r = await fetch(`${API}/ocorrencias`, { headers: cabecalhos() });
+      const lista = await r.json();
+      document.getElementById('tabelaOcorrencias').innerHTML = lista.map(o => `
     <tr>
-      <td>${o.tipo.replaceAll('_',' ')}</td>
+      <td>${o.tipo.replaceAll('_', ' ')}</td>
       <td>${o.municipio}</td>
       <td><span class="badge ${o.gravidade}">${o.gravidade}</span></td>
-      <td>${o.status.replaceAll('_',' ')}</td>
+      <td>${o.status.replaceAll('_', ' ')}</td>
       <td>${new Date(o.criado_em).toLocaleDateString('pt-BR')}</td>
     </tr>
   `).join('') || '<tr><td colspan="5">Nenhuma ocorrência registrada.</td></tr>';
-}
+    }
 
-async function registrarOcorrencia(ev){
-  ev.preventDefault();
-  await fetch(`${API}/ocorrencias`, {
-    method:'POST', headers: cabecalhos(),
-    body: JSON.stringify({
-      tipo: document.getElementById('ocoTipo').value,
-      gravidade: document.getElementById('ocoGravidade').value,
-      municipio: document.getElementById('ocoMunicipio').value,
-      organizacao_id: document.getElementById('ocoOrgId').value || null,
-      descricao: document.getElementById('ocoDescricao').value
-    })
-  });
-  ev.target.reset();
-  carregarOcorrencias();
-  carregarResumo();
-}
-</script>
+    async function registrarOcorrencia(ev) {
+      ev.preventDefault();
+      await fetch(`${API}/ocorrencias`, {
+        method: 'POST', headers: cabecalhos(),
+        body: JSON.stringify({
+          tipo: document.getElementById('ocoTipo').value,
+          gravidade: document.getElementById('ocoGravidade').value,
+          municipio: document.getElementById('ocoMunicipio').value,
+          organizacao_id: document.getElementById('ocoOrgId').value || null,
+          descricao: document.getElementById('ocoDescricao').value
+        })
+      });
+      ev.target.reset();
+      carregarOcorrencias();
+      carregarResumo();
+    }
+  </script>
 </body>
+
 </html>
