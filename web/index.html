@@ -192,6 +192,26 @@
       grid-column: 1/-1;
     }
 
+    form label.checkbox-label {
+      flex-direction: row;
+      align-items: center;
+      gap: .5rem;
+      cursor: pointer;
+      font-size: .85rem;
+      color: var(--texto);
+      margin-top: .3rem;
+      margin-bottom: .3rem;
+    }
+
+    form label.checkbox-label input[type="checkbox"] {
+      width: 1.1rem;
+      height: 1.1rem;
+      cursor: pointer;
+      accent-color: var(--verde);
+      margin: 0;
+      padding: 0;
+    }
+
     button.enviar {
       grid-column: 1/-1;
       background: var(--verde);
@@ -267,13 +287,16 @@
 
   <div id="loginBox">
     <h2>SIGA-GO</h2>
-    <p style="text-align:center;font-size:.8rem;color:#666;margin-bottom:1rem;">Sistema Web de Gestão Ambiental de Goiás</p>
+    <p style="text-align:center;font-size:.8rem;color:#666;margin-bottom:1rem;">Sistema Web de Gestão Ambiental de Goiás
+    </p>
     <input id="loginEmail" type="email" placeholder="E-mail" value="maria@siga.go.gov.br">
     <input id="loginSenha" type="password" placeholder="Senha" value="senha123">
     <button onclick="fazerLogin()">Entrar</button>
     <p class="mensagem" id="loginMsg"></p>
-    <div style="font-size:.78rem;color:#666;margin-top:1.2rem;text-align:center;display:flex;flex-direction:column;gap:.5rem;">
-      <a href="#" onclick="alternarTelaAuth('cadastro');return false;" style="color:var(--verde);font-weight:600;text-decoration:none;">Não tem conta? Cadastre-se</a>
+    <div
+      style="font-size:.78rem;color:#666;margin-top:1.2rem;text-align:center;display:flex;flex-direction:column;gap:.5rem;">
+      <a href="#" onclick="alternarTelaAuth('cadastro');return false;"
+        style="color:var(--verde);font-weight:600;text-decoration:none;">Não tem conta? Cadastre-se</a>
       <a href="#" onclick="registrarDemo();return false;" style="color:#888;">Preencher com usuário demonstração</a>
     </div>
   </div>
@@ -294,7 +317,8 @@
     </form>
     <p class="mensagem" id="cadMsg"></p>
     <div style="font-size:.78rem;color:#666;margin-top:1.2rem;text-align:center;">
-      Já tem uma conta? <a href="#" onclick="alternarTelaAuth('login');return false;" style="color:var(--verde);font-weight:600;text-decoration:none;">Fazer login</a>
+      Já tem uma conta? <a href="#" onclick="alternarTelaAuth('login');return false;"
+        style="color:var(--verde);font-weight:600;text-decoration:none;">Fazer login</a>
     </div>
   </div>
 
@@ -345,7 +369,7 @@
           <label>CNPJ <input required id="orgCnpj"></label>
           <label>Município (GO) <input required id="orgMunicipio"></label>
           <label>Setor <input required id="orgSetor"></label>
-          <label class="completo"><input type="checkbox" id="orgIso"> Possui certificação ISO 14001</label>
+          <label class="completo checkbox-label"><input type="checkbox" id="orgIso"> <span>Possui certificação ISO 14001</span></label>
           <button class="enviar" type="submit">Cadastrar</button>
         </form>
       </section>
@@ -468,7 +492,7 @@
           method: 'POST', headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ nome: 'Maria Silva', email: 'maria@siga.go.gov.br', senha: 'senha123', perfil: 'GESTOR_AMBIENTAL' })
         });
-      } catch(e) {}
+      } catch (e) { }
       const loginMsg = document.getElementById('loginMsg');
       loginMsg.style.color = 'green';
       loginMsg.textContent = 'Usuário demonstração pronto. Clique em Entrar.';
