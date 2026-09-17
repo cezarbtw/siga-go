@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>SIGA-GO | Gestão Ambiental de Goiás</title>
+  <title>PLAMA-GO | Plataforma de Monitoramento e Ação Ambiental de Goiás</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     :root {
@@ -286,10 +286,10 @@
 <body>
 
   <div id="loginBox">
-    <h2>SIGA-GO</h2>
-    <p style="text-align:center;font-size:.8rem;color:#666;margin-bottom:1rem;">Sistema Web de Gestão Ambiental de Goiás
+    <h2>PLAMA-GO</h2>
+    <p style="text-align:center;font-size:.8rem;color:#666;margin-bottom:1rem;">Plataforma de Monitoramento e Ação Ambiental de Goiás
     </p>
-    <input id="loginEmail" type="email" placeholder="E-mail" value="maria@siga.go.gov.br">
+    <input id="loginEmail" type="email" placeholder="E-mail" value="maria@plama.go.gov.br">
     <input id="loginSenha" type="password" placeholder="Senha" value="senha123">
     <button onclick="fazerLogin()">Entrar</button>
     <p class="mensagem" id="loginMsg"></p>
@@ -303,7 +303,7 @@
 
   <div id="cadastroBox" class="oculto">
     <h2>Criar Conta</h2>
-    <p style="text-align:center;font-size:.8rem;color:#666;margin-bottom:1rem;">Cadastre-se no SIGA-GO</p>
+    <p style="text-align:center;font-size:.8rem;color:#666;margin-bottom:1rem;">Cadastre-se no PLAMA-GO</p>
     <form onsubmit="fazerCadastro(event)">
       <input id="cadNome" type="text" placeholder="Nome completo" required>
       <input id="cadEmail" type="email" placeholder="E-mail" required>
@@ -324,7 +324,7 @@
 
   <div id="app" class="oculto">
     <header>
-      <h1>🌱 SIGA-GO — Gestão Ambiental do Estado de Goiás</h1>
+      <h1>🌱 PLAMA-GO — Plataforma de Monitoramento e Ação Ambiental de Goiás</h1>
       <span id="usuarioLogado"></span>
     </header>
     <nav>
@@ -369,7 +369,8 @@
           <label>CNPJ <input required id="orgCnpj"></label>
           <label>Município (GO) <input required id="orgMunicipio"></label>
           <label>Setor <input required id="orgSetor"></label>
-          <label class="completo checkbox-label"><input type="checkbox" id="orgIso"> <span>Possui certificação ISO 14001</span></label>
+          <label class="completo checkbox-label"><input type="checkbox" id="orgIso"> <span>Possui certificação ISO
+              14001</span></label>
           <button class="enviar" type="submit">Cadastrar</button>
         </form>
       </section>
@@ -485,12 +486,12 @@
     }
 
     async function registrarDemo() {
-      document.getElementById('loginEmail').value = 'maria@siga.go.gov.br';
+      document.getElementById('loginEmail').value = 'maria@plama.go.gov.br';
       document.getElementById('loginSenha').value = 'senha123';
       try {
         await fetch(`${API}/auth/registrar`, {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ nome: 'Maria Silva', email: 'maria@siga.go.gov.br', senha: 'senha123', perfil: 'GESTOR_AMBIENTAL' })
+          body: JSON.stringify({ nome: 'Maria Silva', email: 'maria@plama.go.gov.br', senha: 'senha123', perfil: 'GESTOR_AMBIENTAL' })
         });
       } catch (e) { }
       const loginMsg = document.getElementById('loginMsg');

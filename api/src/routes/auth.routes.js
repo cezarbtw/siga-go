@@ -8,7 +8,7 @@ const router = express.Router();
 
 // Hash simples de senha (SHA-256 + salt fixo apenas para fins didáticos do trabalho acadêmico)
 function hashSenha(senha) {
-  return crypto.createHash('sha256').update(senha + 'siga-go-salt').digest('hex');
+  return crypto.createHash('sha256').update(senha + 'plama-go-salt').digest('hex');
 }
 
 // POST /api/auth/registrar

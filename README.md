@@ -1,4 +1,4 @@
-# SIGA-GO — Sistema Web de Gestão Ambiental do Estado de Goiás
+# PLAMA-GO — Plataforma de Monitoramento e Ação Ambiental de Goiás
 
 Projeto de Atividades Práticas Supervisionadas (APS) — Web Service + aplicação cliente.
 
@@ -22,7 +22,7 @@ Basta abrir o arquivo `web/index.html` diretamente no navegador
 na tela de login para gerar um usuário de teste, depois clique em "Entrar".
 
 ## Endpoints principais
-Veja a Seção 5.9 do relatório (APS_SIGA-GO.docx) para a lista completa de
+Veja a Seção 5.9 do relatório (APS_PLAMA-GO.docx) para a lista completa de
 endpoints do Web Service.
 
 ## Observação

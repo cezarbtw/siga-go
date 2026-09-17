@@ -1,5 +1,5 @@
 /**
- * SIGA-GO — Sistema Web de Gestão Ambiental do Estado de Goiás
+ * PLAMA-GO — Plataforma de Monitoramento e Ação Ambiental de Goiás
  * Web Service (API REST) desenvolvido em Node.js + Express + SQLite.
  *
  * Trabalho de Atividades Práticas Supervisionadas (APS)
@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, '../../web')));
 
 // Rota de verificação de disponibilidade do serviço
 app.get('/api/status', (req, res) => {
-  res.json({ servico: 'SIGA-GO', status: 'online', versao: '1.0.0' });
+  res.json({ servico: 'PLAMA-GO', status: 'online', versao: '1.0.0' });
 });
 
 app.use('/api/auth', authRoutes);
@@ -43,7 +43,7 @@ app.use((err, req, res, next) => {
 
 const PORTA = process.env.PORT || 3000;
 app.listen(PORTA, () => {
-  console.log(`SIGA-GO Web Service rodando em http://localhost:${PORTA}`);
+  console.log(`PLAMA-GO Web Service rodando em http://localhost:${PORTA}`);
 });
 
 module.exports = app;

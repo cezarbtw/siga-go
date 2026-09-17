@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const SEGREDO_JWT = process.env.JWT_SECRET || 'siga-go-segredo-desenvolvimento';
+const SEGREDO_JWT = process.env.JWT_SECRET || 'plama-go-segredo-desenvolvimento';
 
 // Middleware que valida o token JWT enviado no cabeçalho Authorization.
 function autenticar(req, res, next) {
