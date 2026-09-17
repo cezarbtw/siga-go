@@ -8,6 +8,8 @@
 const express = require('express');
 const cors = require('cors');
 
+const path = require('path');
+
 const authRoutes = require('./routes/auth.routes');
 const organizacoesRoutes = require('./routes/organizacoes.routes');
 const ocorrenciasRoutes = require('./routes/ocorrencias.routes');
@@ -18,6 +20,9 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+// Servir os arquivos estáticos da interface web (frontend)
+app.use(express.static(path.join(__dirname, '../../web')));
 
 // Rota de verificação de disponibilidade do serviço
 app.get('/api/status', (req, res) => {
